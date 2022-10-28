@@ -23,7 +23,7 @@ This repository contains many stand alone react-js / solidity projects. Each ful
 
 First, you will need to create your project directories. Every app is broken into a contract and app portion. The app portion goes into the apps folder. The contract is places into the apps folder. In general, it is expected that contracts may be used by one or more apps, so we have structured the repository with this in mind.
 
-1. Project Structure 
+# 1. Project Structure 
 
 When you develop your app, you should make efforts to also add in code to deploy any required contracts, within your app directory. The following is an example taxonomy for a solana application.
 
@@ -34,11 +34,6 @@ When you develop your app, you should make efforts to also add in code to deploy
 ```
 # 2. Projects Backlog
 We are currently working on bitesize projects which can help people get started on Solana. Here are the current bite sized projects!
-### Treasury {Paul}
-A token and treasury implementation. The contract can mint a currency, and then the treasury can issue, manage some portion of the currency. This kind of Treasury could be used by a payment processor to allow users to purchase currency.
-- predecessor: nil
-- project: /projects/SOLANA_PROJECT_DIR
-
 ### Treasury {Paul}
 A token and treasury implementation. The contract can mint a currency, and then the treasury can issue, manage some portion of the currency. This kind of Treasury could be used by a payment processor to allow users to purchase currency.
 - predecessor: nil
@@ -85,7 +80,7 @@ Allow a non-expert user the ability to puchase some currency, or other artifact,
 - app: /apps/APP_DIR 
 - project: /projects/SOLANA_PROJECT_DIR
 
-3. Do support easy deploy commands
+# 3. Do support easy deploy commands
 
 In general, within each apps/*/package.json, we will want to supply some standard commands. Right now these commands facilitate local deployment on localhost, and deployment on the testnet. Please see an example project to understand how to set these commands up.
 
@@ -94,6 +89,6 @@ npm run deploy-local
 npm run deploy-test
 ```
 
-4. Do use a .env file
+# 4. Do use a .env file
 
 We should all assume a .env file is present in the repository root directory. If you want to provide some environment variables, please do update the .env.example in the root directory
