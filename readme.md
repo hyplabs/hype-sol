@@ -32,7 +32,7 @@ When you develop your app, you should make efforts to also add in code to deploy
 ├── apps/greeter/[hello world example files, requires contracts/greeter/*]
 ├── apps/echo_server/[echo server example, requires contracts/greeter/*]
 ```
-2. Projects Backlog
+# 2. Projects Backlog
 We are currently working on bitesize projects which can help people get started on Solana. Here are the current bite sized projects!
 ### Treasury {Paul}
 A token and treasury implementation. The contract can mint a currency, and then the treasury can issue, manage some portion of the currency. This kind of Treasury could be used by a payment processor to allow users to purchase currency.
