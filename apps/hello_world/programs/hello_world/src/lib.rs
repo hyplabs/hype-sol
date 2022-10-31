@@ -1,9 +1,9 @@
 use anchor_lang::prelude::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"); // FIXME
 
 #[program]
-pub mod hello_world2 {
+pub mod hello_world {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {

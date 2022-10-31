@@ -7,6 +7,8 @@ This is a basic example of an anchor application which implements a basic contra
 
 ## Running
 
+***FIXME: need to extend the usage steps so that it's clone and use, this means deploying and updating configs.***
+
 1. install [Rust](https://www.rust-lang.org/tools/install)
 2. install [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
     verify that you have keypair data inside `~/.config/solana/id.json`
