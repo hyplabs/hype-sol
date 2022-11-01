@@ -5,6 +5,10 @@ skip-lint = false
 [programs.localnet]
 treasury = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
 
+# FIXME what do I do with these?
+# token-holding-account = "CuG7444rkeq7iDnn9nPQJ9PqLXfHcrwsschz9gDpPNRs"
+# token-contract-address = "7eAd29T6m3mzUp7XRksCEbJ6uT3vnbDXGw3HtjbAZMiZ"
+
 [registry]
 url = "https://api.apr.dev"
 
