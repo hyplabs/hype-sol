@@ -7,21 +7,71 @@ This is a basic example of an anchor application which implements a basic contra
 
 ## Running
 
-***FIXME: need to extend the usage steps so that it's clone and use, this means deploying and updating configs.***
+Follow below to configure, build, and deploy and run this on localhost:
 
-1. install [Rust](https://www.rust-lang.org/tools/install)
-2. install [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
-    verify that you have keypair data inside `~/.config/solana/id.json`
-3. Run the `hello world` deployment and test via the command `anchor test`. You should see `1 passing (419ms)`
+1. Install [Rust](https://www.rust-lang.org/tools/install)
+1. Install [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
+1. Configure Solana to use localhost `solana config set --url localhost`
+
+    ...You should see output like this:
+    ```
+    paulmcinnis:hello_world$ solana config set --url localhost
+    Config File: /Users/paulmcinnis/.config/solana/cli/config.yml
+    RPC URL: http://localhost:8899
+    WebSocket URL: ws://localhost:8900/ (computed)
+    Keypair Path: /Users/paulmcinnis/.config/solana/id.json
+    Commitment: confirmed
+    ```
+1. Build the program `anchor build`
+
+    ...this will generate the `target` subdirectory containing an `IDL` (like an ABI) in `target/idl/hello_world.json`
+    ```
+    paulmcinnis:hello_world$ cat target/idl/hello_world.json
+    {
+      "version": "0.1.0",
+      "name": "hello_world",
+      "instructions": [
+        {
+          "name": "initialize",
+          "accounts": [],
+          "args": []
+        }
+      ],
+      "metadata": {
+        "address": "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLn1"
+      }
+    ```
 
 
-## Reuse
+1. We need to bootstrap the dynamically-generated `program ID` (like an address) to proceed any further:
 
-Pretty simple, via this command:
+    1. Get this by doing: `solana address -k target/deploy/hello_world-keypair.json`
+        ```
+        paulmcinnis:hello_world$ solana address -k target/deploy/hello_world-keypair.json
+        BUhUbDumryZpuG2XKv8N1saRDXL9pMAKsJz6vGPd9ejA
+        ```
+    1. copy the address into `lib.rs` as `declare_id` like so:
+        ```
+        // helloworld/src/lib.rs
+        declare_id!("BUhUbDumryZpuG2XKv8N1saRDXL9pMAKsJz6vGPd9ejA");
+        ```
+    1. copy the address into `Anchor.toml` under `[programs.localnet]` like so:
+        ```
+        # Anchor.toml
+        [programs.localnet]
+        hello_world = "BUhUbDumryZpuG2XKv8N1saRDXL9pMAKsJz6vGPd9ejA"
+        ```
+
+1. Run the `hello world` local validator and test the initialisation via the command `anchor test`. You should see `1 passing (xxxms)`
+
+
+## Using anchor in your own project
+
+Pretty simple, initialise via this command:
 
   `anchor init <project-name> --no-git`
 
-... you can create this same basic project anywhere with any name.
+... you can create this same basic project anywhere with any name, just be mindful of the bootstrap for getting started.
 
 
 ## What's Inside
@@ -36,3 +86,7 @@ Pretty simple, via this command:
 - A `registry` your program can be pushed to (`[registry]`)
 - A `provider` which can be used in your tests (`[provider]`)
 - Scripts that Anchor executes for you (`[scripts]`). The test script is run when running anchor test. You can run your own scripts with anchor run `<script_name>`.
+
+## Further Reading
+
+* To get the low-down on rust x anchor I recommend reading through [this medium article](https://dev.to/edge-and-node/the-complete-guide-to-full-stack-solana-development-with-react-anchor-rust-and-phantom-3291).

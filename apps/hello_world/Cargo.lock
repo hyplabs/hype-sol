@@ -589,7 +589,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "hello_world2"
+name = "hello_world"
 version = "0.1.0"
 dependencies = [
  "anchor-lang",

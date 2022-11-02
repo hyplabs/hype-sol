@@ -1,12 +1,12 @@
 import * as anchor from "@project-serum/anchor";
 import { Program } from "@project-serum/anchor";
-import { HelloWorld2 } from "../target/types/hello_world2";
+import { HelloWorld } from "../target/types/hello_world";
 
-describe("hello_world2", () => {
+describe("hello_world", () => {
   // Configure the client to use the local cluster.
   anchor.setProvider(anchor.AnchorProvider.env());
 
-  const program = anchor.workspace.HelloWorld2 as Program<HelloWorld2>;
+  const program = anchor.workspace.HelloWorld as Program<HelloWorld>;
 
   it("Is initialized!", async () => {
     // Add your test here.
