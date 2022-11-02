@@ -12,12 +12,34 @@ First we will make sure anchor is chooching, then we will create and mint some `
 
 ### Anchor hello world:
 
-*FIXME this doesn't work for ppl who clone this, they need to configure anchor.toml*
 
-1. install [Rust](https://www.rust-lang.org/tools/install)
-2. install [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
-    verify that you have keypair data inside `~/.config/solana/id.json`
-3. hello world self-test: `anchor test`
+Follow below to configure, build, and deploy and run this on localhost:
+
+1. Install [Rust](https://www.rust-lang.org/tools/install)
+1. Install [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
+1. Configure Solana to use localhost `solana config set --url localhost`
+1. Build the program `anchor build`
+1. We need to bootstrap the dynamically-generated `program ID` (like an address) to proceed any further:
+
+    1. Get this by doing: `solana address -k target/deploy/treasury-keypair.json`
+        ```
+        paulmcinnis:treasury$ solana address -k target/deploy/treasury-keypair.json
+        BUhUbDumryZpuG2XKv8N1saRDXL9pMAKsJz6vGPd9ejA
+        ```
+    1. copy the address into `lib.rs` as `declare_id` like so:
+        ```
+        // helloworld/src/lib.rs
+        declare_id!("BUhUbDumryZpuG2XKv8N1saRDXL9pMAKsJz6vGPd9ejA");
+        ```
+    1. copy the address into `Anchor.toml` under `[programs.localnet]` like so:
+        ```
+        # Anchor.toml
+        [programs.localnet]
+        treasury = "BUhUbDumryZpuG2XKv8N1saRDXL9pMAKsJz6vGPd9ejA"
+        ```
+
+1. Run the `treasury` local validator and test the initialisation via the command `anchor test`. You should see `1 passing (xxxms)`
+
 
 ### Create Paul-Coin:
 
