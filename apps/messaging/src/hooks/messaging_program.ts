@@ -1,6 +1,6 @@
 import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
-import { Messaging } from "../../../../contracts/messaging/target/types/messaging";
-import idl from "../../../../contracts/messaging/target/idl/messaging.json";
+import { Messaging } from "../../../../programs/messaging/target/types/messaging";
+import idl from "../../../../programs/messaging/target/idl/messaging.json";
 import * as anchor from "@project-serum/anchor";
 import { useMemo } from "react";
 import { PublicKey } from "@solana/web3.js";

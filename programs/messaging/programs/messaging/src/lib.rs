@@ -2,7 +2,7 @@ mod states;
 use anchor_lang::prelude::*;
 use states::{message::Message, user::User};
 
-declare_id!("Gy8dxpYwhCnmvQGfgkz13NtYQGbMHifkkjNj5EjS2dxJ");
+declare_id!("3QUUddnWRXhghTBsn6r6Q4DMN4t4y9QrNgVna2Q5BgHb");
 
 #[program]
 pub mod messaging {
