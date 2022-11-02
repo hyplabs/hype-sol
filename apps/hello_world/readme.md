@@ -63,7 +63,8 @@ Follow below to configure, build, and deploy and run this on localhost:
       hello_world = "BUhUbDumryZpuG2XKv8N1saRDXL9pMAKsJz6vGPd9ejA"
       ```
 
-1. Run `yarn` if you have not done so already
+1. Run `yarn` to install the needed unit-testing libraries
+
 1. Run the `hello world` local validator and test the initialisation via the command `anchor test`. You should see `1 passing (xxxms)`
 
 ## Using anchor in your own project

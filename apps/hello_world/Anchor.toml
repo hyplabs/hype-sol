@@ -1,3 +1,4 @@
+# Configuration for anchor describing where to find things on chain and what can be executed.
 [features]
 seeds = false
 skip-lint = false
