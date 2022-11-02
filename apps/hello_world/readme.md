@@ -38,10 +38,8 @@ Follow below to configure, build, and deploy and run this on localhost:
          "accounts": [],
          "args": []
        }
-     ],
-     "metadata": {
-       "address": "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLn1"
-     }
+     ]
+   }
    ```
 
 1. We need to bootstrap the dynamically-generated `program ID` (like an address) to proceed any further:
