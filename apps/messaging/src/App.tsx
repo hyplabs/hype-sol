@@ -1,16 +1,18 @@
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
   ConnectionProvider,
   WalletProvider,
 } from "@solana/wallet-adapter-react";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { useMemo } from "react";
-import { clusterApiUrl } from "@solana/web3.js";
-import { SolflareWalletAdapter } from "@solana/wallet-adapter-solflare";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import "@solana/wallet-adapter-react-ui/styles.css";
-import Home from "./pages/home";
-import * as buffer from "buffer";
-window.Buffer = buffer.Buffer;
+import { SolflareWalletAdapter } from "@solana/wallet-adapter-solflare";
+import { clusterApiUrl } from "@solana/web3.js";
+import { useMemo } from "react";
+import { Route, Routes } from "react-router-dom";
+
+import Header from "./components/header";
+import HomePage from "./pages/home";
+import MessagingPage from "./pages/messaging";
 
 const App = () => {
   const network = WalletAdapterNetwork.Devnet;
@@ -22,7 +24,11 @@ const App = () => {
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
           <WalletModalProvider>
-            <Home />
+            <Header />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/messaging" element={<MessagingPage />} />
+            </Routes>
           </WalletModalProvider>
         </WalletProvider>
       </ConnectionProvider>

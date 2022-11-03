@@ -1,14 +1,17 @@
-import Inbox from "../components/messaging/inbox";
-import Nav from "../components/nav/nav";
-import { useWallet } from "@solana/wallet-adapter-react";
-import { PublicKey } from "@solana/web3.js";
-import { useEffect, useState } from "react";
-import { useMessagingProgram } from "../hooks/messaging_program";
 import * as anchor from "@project-serum/anchor";
-import Register from "../components/messaging/register";
-import { Button } from "flowbite-react";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { Keypair, PublicKey } from "@solana/web3.js";
+import { useEffect, useState } from "react";
 
-const Home = () => {
+import Inbox from "../components/messaging/inbox";
+import Register from "../components/messaging/register";
+import {
+  Message,
+  User,
+  useMessagingProgram,
+} from "../hooks/use_messaging_program";
+
+const HomePage = () => {
   const wallet = useWallet();
   const messagingProgram = useMessagingProgram();
 
@@ -25,11 +28,12 @@ const Home = () => {
     return pda;
   };
 
-  const [user, setUser] = useState<any>(); // TODO: define proper type
-  const [messages, setMessages] = useState<any>(); // TODO: define proper type
+  const [user, setUser] = useState<User | null>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const getUser = async () => {
     if (wallet.publicKey && messagingProgram.program) {
+      messagingProgram.program.provider.publicKey;
       const userPublicKey = await getPDA(
         "user",
         wallet.publicKey,
@@ -59,13 +63,7 @@ const Home = () => {
         .accounts({ user: userPublicKey, owner: wallet.publicKey })
         .rpc();
 
-      try {
-        setUser(
-          await messagingProgram.program.account.user.fetch(userPublicKey)
-        );
-      } catch (error) {
-        setUser(null);
-      }
+      await getUser();
     }
   };
 
@@ -82,13 +80,63 @@ const Home = () => {
         .accounts({ user: userPublicKey, owner: wallet.publicKey })
         .rpc();
 
-      setUser(null);
+      await getUser();
     }
   };
 
-  const getMessages = async () => {};
+  const getMessages = async () => {
+    if (wallet.publicKey && messagingProgram.program) {
+      try {
+        // const fromMeToYou =
+        //   wallet.publicKey.toBase58() + wallet.publicKey.toBase58();
+        // const myMessages = await messagingProgram.program.account.message.all([
+        //   { memcmp: { offset: 8, bytes: fromMeToYou } },
+        // ]);
+        // const fromYouToMe =
+        //   wallet.publicKey.toBase58() + wallet.publicKey.toBase58();
+        // const yourMessages = await messagingProgram.program.account.message.all(
+        //   [{ memcmp: { offset: 8, bytes: fromYouToMe } }]
+        // );
 
-  const sendMessage = async () => {};
+        // setMessages(myMessages.concat(yourMessages));
+        setMessages(
+          await messagingProgram.program.account.message.all([
+            {
+              memcmp: {
+                offset: 8,
+                bytes: wallet.publicKey.toBase58(),
+              },
+            },
+            {
+              memcmp: {
+                offset: 40,
+                bytes: wallet.publicKey.toBase58(),
+              },
+            },
+          ])
+        );
+      } catch (error) {
+        setMessages([]);
+      }
+    }
+  };
+
+  const sendMessage = async (message: string) => {
+    if (wallet.publicKey && messagingProgram.program) {
+      const messageKeypair = Keypair.generate();
+
+      await messagingProgram.program.methods
+        .sendMessage(wallet.publicKey, message)
+        .accounts({
+          message: messageKeypair.publicKey,
+          owner: wallet.publicKey,
+        })
+        .signers([messageKeypair])
+        .rpc();
+
+      await getMessages();
+    }
+  };
 
   useEffect(() => {
     getUser();
@@ -96,24 +144,28 @@ const Home = () => {
   }, [wallet.publicKey, messagingProgram.program]);
 
   return (
-    <>
-      <div className="container mx-auto h-screen">
-        <Nav />
-        <div className="flex items-center justify-center">
-          {wallet.connected ? (
-            user ? (
-              <Inbox />
-            ) : (
-              <Register registerUser={registerUser} />
-            )
+    <div className="container mx-auto">
+      <div className="flex justify-center mt-16">
+        {wallet.connected ? (
+          user ? (
+            <>
+              <Inbox
+                messages={messages.sort(
+                  (a, b) => a.account.createdAt - b.account.createdAt
+                )}
+                sendMessage={sendMessage}
+              />
+              {/* <Button onClick={deleteUser}>Delete User</Button> */}
+            </>
           ) : (
-            <></>
-          )}
-        </div>
-        <Button onClick={deleteUser}>Delete User</Button>
+            <Register registerUser={registerUser} />
+          )
+        ) : (
+          <></>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
-export default Home;
+export default HomePage;
