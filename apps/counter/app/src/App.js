@@ -2,11 +2,11 @@ import './App.css';
 import { useState } from 'react';
 import { Connection, PublicKey } from '@solana/web3.js';
 import {
-  Program, Provider, web3
+  Program, AnchorProvider, web3
 } from '@project-serum/anchor';
 import idl from './idl.json';
 
-import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 import { useWallet, WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 require('@solana/wallet-adapter-react-ui/styles.css');
@@ -26,7 +26,7 @@ const programID = new PublicKey(idl.metadata.address);
 
 function App() {
   const [value, setValue] = useState(null);
-  const wallet = useWallet();
+  const wallet = useWallet(); // FIXME  should be using useAnchorWallet
 
   async function getProvider() {
     /* create the provider and return it to the caller */
@@ -34,7 +34,7 @@ function App() {
     const network = "http://127.0.0.1:8899";
     const connection = new Connection(network, opts.preflightCommitment);
 
-    const provider = new Provider(
+    const provider = new AnchorProvider(
       connection, wallet, opts.preflightCommitment,
     );
     return provider;

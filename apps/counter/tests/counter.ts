@@ -4,7 +4,6 @@ import { Program } from "@project-serum/anchor";
 import { Counter } from "../target/types/counter";
 
 const assert = require("assert");
-const { SystemProgram } = anchor.web3;
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const initCounter = async () => {
@@ -15,23 +14,14 @@ const initCounter = async () => {
   const accountKeyPair = anchor.web3.Keypair.generate();
 
   // Call the create function via RPC
-  await program.rpc.create({
-    accounts: {
+  await program.methods
+    .create()
+    .accounts({
       baseAccount: accountKeyPair.publicKey,
       user: provider.wallet.publicKey,
-      systemProgram: SystemProgram.programId,
-    },
-    signers: [accountKeyPair],
-  });
-
-  // FIXME: should be using: await program.methods.create(...);
-  // await program
-  // .methods.create()
-  // .accounts({
-  //   baseAccount: accountKeyPair.publicKey,
-  //   user: provider.wallet.publicKey,
-  // })
-  // .signers([accountKeyPair])
+    })
+    .signers([accountKeyPair])
+    .rpc();
 
   return accountKeyPair;
 };
@@ -70,15 +60,17 @@ describe("counter", () => {
 
     // Increment once, verify 1
     await program.rpc.increment({
+      // FIXME migrate this to program.method
       accounts: {
         baseAccount: accountKeyPair.publicKey,
       },
     });
     await verifyAccountCounterIsN(program, accountKeyPair, 1);
 
-    // Increment once more, verify 2
-    await delay(1000); // we have to wait otherwise we do what is essentialy a double spend attack.
+    // Increment once more, verify 2. NOTE: we have to wait otherwise we do what is essentially a double-spend attack.
+    await delay(1000);
     await program.rpc.increment({
+      // FIXME migrate this to program.method
       accounts: {
         baseAccount: accountKeyPair.publicKey,
       },
