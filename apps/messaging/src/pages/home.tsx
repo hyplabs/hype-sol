@@ -1,6 +1,7 @@
 import * as anchor from "@project-serum/anchor";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Keypair, PublicKey } from "@solana/web3.js";
+import { Button } from "flowbite-react";
 import { useEffect, useState } from "react";
 
 import Inbox from "../components/messaging/inbox";
@@ -155,7 +156,7 @@ const HomePage = () => {
                 )}
                 sendMessage={sendMessage}
               />
-              {/* <Button onClick={deleteUser}>Delete User</Button> */}
+              <Button onClick={deleteUser}>Delete User</Button>
             </>
           ) : (
             <Register registerUser={registerUser} />
