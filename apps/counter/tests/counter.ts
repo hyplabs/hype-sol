@@ -59,22 +59,22 @@ describe("counter", () => {
     await verifyAccountCounterIsN(program, accountKeyPair, 0);
 
     // Increment once, verify 1
-    await program.rpc.increment({
-      // FIXME migrate this to program.method
-      accounts: {
+    await program.methods
+      .increment()
+      .accounts({
         baseAccount: accountKeyPair.publicKey,
-      },
-    });
+      })
+      .rpc();
     await verifyAccountCounterIsN(program, accountKeyPair, 1);
 
     // Increment once more, verify 2. NOTE: we have to wait otherwise we do what is essentially a double-spend attack.
     await delay(1000);
-    await program.rpc.increment({
-      // FIXME migrate this to program.method
-      accounts: {
+    await program.methods
+      .increment()
+      .accounts({
         baseAccount: accountKeyPair.publicKey,
-      },
-    });
+      })
+      .rpc();
     await verifyAccountCounterIsN(program, accountKeyPair, 2);
   });
 });
