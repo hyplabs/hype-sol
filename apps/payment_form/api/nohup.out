@@ -1,0 +1,25 @@
+
+> api@1.0.0 start /app/interactive/payment_form/api
+> node server/index.js
+
+Server listening on 5000
+
+> api@1.0.0 start /app/interactive/payment_form/api
+> node server/index.js
+
+Server listening on 3000
+
+> api@1.0.0 start /app/interactive/payment_form/api
+> node server/index.js
+
+Server listening on 3000
+
+> api@1.0.0 start /app/interactive/payment_form/api
+> node server/index.js
+
+Server listening on 3000
+
+> api@1.0.0 start /app/hype-sol/apps/payment_form/api
+> node server/index.js
+
+Server listening on 3000
