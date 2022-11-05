@@ -9,7 +9,7 @@ pub struct User {
 impl User {
     pub const SIZE: usize = 32 + 1;
 
-    pub fn register(&mut self, owner: Pubkey, bump: u8) -> Result<()> {
+    pub fn create(&mut self, owner: Pubkey, bump: u8) -> Result<()> {
         self.owner = owner;
         self.bump = bump;
 

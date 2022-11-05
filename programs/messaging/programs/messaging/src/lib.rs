@@ -8,11 +8,11 @@ declare_id!("3QUUddnWRXhghTBsn6r6Q4DMN4t4y9QrNgVna2Q5BgHb");
 pub mod messaging {
     use super::*;
 
-    pub fn register_user(ctx: Context<RegisterUser>) -> Result<()> {
+    pub fn create_user(ctx: Context<CreateUser>) -> Result<()> {
         let owner = *ctx.accounts.owner.key;
         let bump = *ctx.bumps.get("user").unwrap();
 
-        ctx.accounts.user.register(owner, bump)
+        ctx.accounts.user.create(owner, bump)
     }
 
     pub fn delete_user(ctx: Context<DeleteUser>) -> Result<()> {
@@ -27,7 +27,7 @@ pub mod messaging {
 }
 
 #[derive(Accounts)]
-pub struct RegisterUser<'info> {
+pub struct CreateUser<'info> {
     #[account(init, payer=owner, space=8 + User::SIZE, seeds=[b"user", owner.key().as_ref()], bump)]
     pub user: Account<'info, User>,
     #[account(mut)]

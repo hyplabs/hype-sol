@@ -1,5 +1,4 @@
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import { Button, Navbar } from "flowbite-react";
+import { Navbar } from "flowbite-react";
 import { useLocation } from "react-router-dom";
 
 import { ConnectWalletButton } from "./connect_wallet";
