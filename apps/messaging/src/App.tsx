@@ -1,4 +1,5 @@
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -19,7 +20,10 @@ import MessagingPage from "./pages/messaging";
 const App = () => {
   const network = WalletAdapterNetwork.Devnet;
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-  const wallets = useMemo(() => [new SolflareWalletAdapter()], []);
+  const wallets = useMemo(
+    () => [new SolflareWalletAdapter(), new PhantomWalletAdapter()],
+    []
+  );
 
   return (
     <div className="h-screen">

@@ -615,6 +615,13 @@
   dependencies:
     eventemitter3 "^4.0.0"
 
+"@solana/wallet-adapter-phantom@^0.9.17":
+  version "0.9.17"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-phantom/-/wallet-adapter-phantom-0.9.17.tgz#d042f5d94fdbe5493f78717b6f3419941574ae2e"
+  integrity sha512-NgqObD9G2SojkKaLEz7RPC0izS0qPzHa94Da4le3xMErW7SKIEKjVfQ3fP/rIcD2jEwGW5qf9YqYPsPw8jaJ0Q==
+  dependencies:
+    "@solana/wallet-adapter-base" "^0.9.18"
+
 "@solana/wallet-adapter-react-ui@^0.9.18":
   version "0.9.21"
   resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-react-ui/-/wallet-adapter-react-ui-0.9.21.tgz#5e93b2d9dfe62f3c5fd0c2a58873574fdaaf90bb"
