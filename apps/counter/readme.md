@@ -82,5 +82,4 @@ Follow below to configure, build, and deploy and run this on localhost:
   - a [follow up to above tutorial](https://www.8teapi.com/anchor-tutorial-2-2/) with some additions and clarifications
 - creating a [token on solana tutorial (mainnet tho)](https://www.brianfriel.xyz/how-to-create-a-token-on-solana/)
 - [rust docs](https://docs.rs/solana-program/latest/solana_program/) that are [sorta-maybe](https://docs.solana.com/developing/clients/rust-api) helpful
-
-
+- [spl-token-docs](https://spl.solana.com/token)
