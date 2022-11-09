@@ -32,7 +32,8 @@ const HomePage = () => {
   // Init
   const executeInit = async () => {
     if (!program || !publicKey) return;
-    const _accountKeyPair = web3.Keypair.generate();
+    const _accountKeyPair = web3.Keypair.generate(); // generate on-demand...
+    setAccountKeyPair(_accountKeyPair);
     await program.methods
       .create()
       .accounts({
@@ -41,7 +42,7 @@ const HomePage = () => {
       })
       .signers([_accountKeyPair])
       .rpc();
-    setAccountKeyPair(_accountKeyPair);
+    getCount(); //FIXME this wont fire the first time because of how we set keypair/
   };
 
   // Increment
@@ -50,15 +51,14 @@ const HomePage = () => {
     await program.methods
       .increment()
       .accounts({
-        // FIXME legacy.ts:686 Uncaught (in promise) Error: unknown signer: 5kDbPe7XweRaCtQjtkcEwzYKL4hBCfTCfAKETrxYHxH7
         baseAccount: accountKeyPair.publicKey,
       })
-      .signers([accountKeyPair])
       .rpc();
+    getCount();
   };
 
   // Get Value
-  const getValue = async () => {
+  const getCount = async () => {
     if (!program || !accountKeyPair) return;
     const curAccount = await program.account.baseAccount.fetch(
       accountKeyPair.publicKey
@@ -87,8 +87,8 @@ const HomePage = () => {
         >
           Increment
         </Button>
-        <Button className="w-32" onClick={getValue} disabled={!anchorWallet}>
-          Get Value
+        <Button className="w-32" onClick={getCount} disabled={!anchorWallet}>
+          Get Count
         </Button>
       </div>
     </div>
