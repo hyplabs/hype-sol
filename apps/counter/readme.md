@@ -55,7 +55,7 @@ Follow below to configure, build, and deploy and run this on localhost:
    solana-test-validator
    ```
    You will want to shut this down when you are done playing with this since it is taxing on your CPU and storage.
-1. Lets airdrop some localnet SOL to your phantom wallet
+1. Lets airdrop some localnet SOL to your phantom wallet & deploy to localnet
 
    1. Open a new terminal window, and double-check you are on localnet
       ```
@@ -63,10 +63,42 @@ Follow below to configure, build, and deploy and run this on localhost:
       ```
    1. Copy the wallet address from phantom by clicking the top `Wallet 1` dropdown and hitting `copy`.
    1. In the new terminal give yourself 10 localnet SOL:
+
       ```
       solana airdrop 10 <address>
       ```
-   1. Start our react web-app
+
+   1. Deploy the count program to local net
+
+      with anchor:
+
+      ```
+      anchor deploy
+      ```
+
+      _or_ with solana CLI:
+
+      ```
+      solana program deploy --program-id ./target/deploy/counter-keypair.json ./target/deploy/counter.so
+      ```
+
+   1. Verify it's deployed successfully
+
+      ```
+      paulmcinnis:counter$ solana program show target/deploy/counter-keypair.json
+
+      Program Id: AE2B8TSeXLjSR59VQDsmwjUkvmHtwgDUXnDs9xP12STi
+      Owner: BPFLoaderUpgradeab1e11111111111111111111111
+      ProgramData Address: Ehj2ExAcnjdpfqb1t7XX8UCXVa2CNxdkVrtZiWA4JcLF
+      Authority: B7SbHh1v688GWkabubqrwJqyyXtphccqhW7P4GRdR5jc
+      Last Deployed In Slot: 7703
+      Data Length: 425872 (0x67f90) bytes
+      Balance: 2.9652732 SOL
+      ```
+
+1. Now we can start the FE while the validator is running
+
+   1. Start our react web-app from the `./app` folder:
       ```
       cd app
       yarn start
@@ -87,4 +119,3 @@ Follow below to configure, build, and deploy and run this on localhost:
 - Great rundown of how anchor's wallet etc aren't the same as what we use in react [all the way thru](https://lorisleiva.com/create-a-solana-dapp-from-scratch/integrating-with-solana-wallets)
 
 ![helpful anchor diag](https://lorisleiva.com/assets/articles/2021/1130-solana-8-wallets/diagram-wallet-not-compatible.png)
-

@@ -10,8 +10,12 @@ const initCounter = async () => {
   // Initialize an account containing the count value and program, then return it's location
   const provider = anchor.AnchorProvider.env();
   anchor.setProvider(provider);
+
   const program = anchor.workspace.Counter as Program<Counter>;
   const accountKeyPair = anchor.web3.Keypair.generate();
+
+  console.log("baseAccount", accountKeyPair.publicKey.toString()); // changes
+  console.log("user", provider.wallet.publicKey.toString()); // same every time
 
   // Call the create function via RPC
   await program.methods
