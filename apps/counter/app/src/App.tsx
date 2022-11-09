@@ -11,15 +11,9 @@ import { SolflareWalletAdapter } from "@solana/wallet-adapter-solflare";
 import { useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
 
-// NOTE: you can enable this and below for access to dev-net etc.
-// import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-// import { clusterApiUrl } from "@solana/web3.js";
-
 const App = () => {
-  // const network = WalletAdapterNetwork.Devnet;
-  // const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-  const endpoint = useMemo(() => "http://localhost:8899", []);
   const localStorageKey = "walletAdapter";
+  const endpoint = useMemo(() => "http://localhost:8899", []);
   const wallets = useMemo(
     () => [new SolflareWalletAdapter(), new PhantomWalletAdapter()],
     []
