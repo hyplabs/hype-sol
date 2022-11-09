@@ -84,4 +84,7 @@ Follow below to configure, build, and deploy and run this on localhost:
 - [rust docs](https://docs.rs/solana-program/latest/solana_program/) that are [sorta-maybe](https://docs.solana.com/developing/clients/rust-api) helpful
 - [spl-token-docs](https://spl.solana.com/token)
 - https://github.com/solana-labs/wallet-adapter
+- Great rundown of how anchor's wallet etc aren't the same as what we use in react [all the way thru](https://lorisleiva.com/create-a-solana-dapp-from-scratch/integrating-with-solana-wallets)
+
+![helpful anchor diag](https://lorisleiva.com/assets/articles/2021/1130-solana-8-wallets/diagram-wallet-not-compatible.png)
 

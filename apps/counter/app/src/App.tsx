@@ -18,7 +18,8 @@ import { Route, Routes } from "react-router-dom";
 const App = () => {
   // const network = WalletAdapterNetwork.Devnet;
   // const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-  const endpoint = "http://127.0.0.1:8899";
+  const endpoint = useMemo(() => "http://localhost:8899", []);
+  const localStorageKey = "walletAdapter";
   const wallets = useMemo(
     () => [new SolflareWalletAdapter(), new PhantomWalletAdapter()],
     []
@@ -27,7 +28,11 @@ const App = () => {
   return (
     <div className="h-screen">
       <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={wallets} autoConnect>
+        <WalletProvider
+          localStorageKey={localStorageKey}
+          wallets={wallets}
+          autoConnect
+        >
           <WalletModalProvider>
             <Header />
             <Routes>

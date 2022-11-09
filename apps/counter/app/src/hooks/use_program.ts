@@ -7,7 +7,7 @@ interface Program<T extends anchor.Idl> {
 }
 
 const opts: anchor.web3.ConfirmOptions = {
-  preflightCommitment: "confirmed",
+  preflightCommitment: "processed",
 };
 
 const useProgram = <T extends anchor.Idl>(

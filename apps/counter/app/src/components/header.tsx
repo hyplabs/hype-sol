@@ -4,7 +4,7 @@ import { Navbar } from "flowbite-react";
 const Header = () => {
   return (
     <header>
-      <Navbar>
+      <Navbar className="max-w-xl mx-auto pb-12">
         <Navbar.Brand href="https://hypotenuse.ca/">
           <img
             src="https://hypotenuse.ca/img/navbar-logo2.png"
