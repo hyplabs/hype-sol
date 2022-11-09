@@ -1,8 +1,12 @@
 const express = require("express");
+require('dotenv').config()
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
-const stripe = require('stripe')('sk_test_Hrs6SAopgFPF0bZXSN3f6ELN');
-const PORT = process.env.PORT || 3000;
+
+//const stripe = require('stripe')(process.env.SERVER_STRIPE_PRIVATE || "sk_test_Hrs6SAopgFPF0bZXSN3f6ELN");
+//const PORT = process.env.SERVER_PORT || 3000;
+const stripe = require('stripe')(process.env.SERVER_STRIPE_PRIVATE);
+const PORT = process.env.SERVER_PORT;
 const app = express();
 
 async function createPaymentIntent(amount_in,currency_in) {
