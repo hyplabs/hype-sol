@@ -2,7 +2,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { Keypair, PublicKey } from "@solana/web3.js";
 import { Button, TextInput } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   Message,
@@ -14,9 +14,10 @@ const Inbox = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const messageView = useRef<HTMLDivElement | null>(null);
-  const { publicKey } = useWallet();
+  const { publicKey, disconnecting } = useWallet();
   const { program } = useMessagingProgram();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const getMessages = async () => {
     const toAddress = location.pathname.split("/").pop();
@@ -57,6 +58,12 @@ const Inbox = () => {
       );
     }
   };
+
+  useEffect(() => {
+    if (disconnecting) {
+      navigate("/messaging");
+    }
+  }, [disconnecting]);
 
   useEffect(() => {
     getMessages();
