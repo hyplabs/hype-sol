@@ -24,7 +24,7 @@ const HomePage = () => {
   // Create a program interface ASAP
   useMemo(() => {
     if (!anchorWallet) return;
-    const opts = { preflightCommitment: "confirmed" } as ConfirmOptions; // why not processed?
+    const opts = { preflightCommitment: "confirmed" } as ConfirmOptions;
     const provider = new AnchorProvider(connection, anchorWallet, opts);
     setProgram(new Program(IDL, programID, provider));
   }, [anchorWallet]);
@@ -32,7 +32,7 @@ const HomePage = () => {
   // Init
   const executeInit = async () => {
     if (!program || !publicKey) return;
-    const _accountKeyPair = web3.Keypair.generate(); // generate on-demand...
+    const _accountKeyPair = web3.Keypair.generate();
     setAccountKeyPair(_accountKeyPair);
     await program.methods
       .create()
@@ -42,7 +42,6 @@ const HomePage = () => {
       })
       .signers([_accountKeyPair])
       .rpc();
-    getCount(); //FIXME this wont fire the first time because of how we set keypair/
   };
 
   // Increment
