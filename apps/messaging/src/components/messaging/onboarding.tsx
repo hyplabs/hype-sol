@@ -83,7 +83,10 @@ const Onboarding = () => {
   if (userExists) {
     return (
       <div className="m-4">
-        <Information title="" description="" />
+        <Information
+          title="Start Messaging"
+          description="Please provide the address of the user that you want to message. Once you've pasted in the user's public address, click on message to be redirected to the your inbox."
+        />
         <section className="flex justify-center m-4">
           <Button onClick={deleteUser}>Delete Account</Button>
         </section>

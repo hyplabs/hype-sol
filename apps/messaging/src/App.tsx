@@ -18,8 +18,17 @@ import HomePage from "./pages/home";
 import MessagingPage from "./pages/messaging";
 
 const App = () => {
-  const network = WalletAdapterNetwork.Devnet;
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  let endpoint = "";
+
+  if (import.meta.env.VITE_NETWORK == "localnet") {
+    endpoint = useMemo(() => "http://localhost:8899", []);
+  }
+
+  if (import.meta.env.VITE_NETWORK == "devnet") {
+    const network = WalletAdapterNetwork.Devnet;
+    endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  }
+
   const wallets = useMemo(
     () => [new SolflareWalletAdapter(), new PhantomWalletAdapter()],
     []
