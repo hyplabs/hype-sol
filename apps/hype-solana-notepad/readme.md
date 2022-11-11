@@ -1,4 +1,5 @@
 ## Getting started
+![image](https://user-images.githubusercontent.com/53666764/201426481-eabaf1a1-4c30-45f3-ad27-92dca9bd1aea.png)
 
 1. First, make sure you have rust, the solana cli and solana-test-validator script installed
    - https://docs.solana.com/cli/install-solana-cli-tools
