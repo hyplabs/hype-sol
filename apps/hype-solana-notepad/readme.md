@@ -32,7 +32,7 @@ solana-keygen new
 ```
 solana config set --url localhost
 ```
-
+This should tell solana to use localhost:8899
 4. Install Anchor
 
 ```
@@ -46,8 +46,6 @@ brew install yarn
 or
 npm install -g yarn
 ```
-
-This should tell solana to use localhost:8899
 
 6. Build the contract
 
