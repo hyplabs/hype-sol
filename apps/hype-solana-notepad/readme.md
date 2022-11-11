@@ -66,17 +66,48 @@ solana-test-validator
 anchor deploy
 ```
 
-9. Install phantom wallet in chrome
+9. Update the program ID
+   This step I don't really understand as much - it's unclear to me when and why the programId for a given
+   program might change. As such, these are the steps to completely update the program id - when in doubt,
+   just redo these I guess until we understand programIds better
+
+- When you deploy locally with anchor deploy, the command line output should contain the programId
+- alternatively, from the project directory (i.e. hype-solana-notepad) run
+
+```
+solana address -k  target/deploy/hype-solana-notepad.json
+```
+
+This command should print out the programId
+
+- Update the Anchor.toml file:
+
+```
+hype_solana_notepad = "<programId here>"
+```
+
+- go to lib.rs and modify the following line:
+
+```
+declare_id!("<programId here>");
+```
+
+- go to use_notes_program.ts and edit the following line:
+  ```
+  new PublicKey("<ProgramId here>")
+  ```
+
+10. Install phantom wallet in chrome
 
 https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa?hl=en
 
-10. Send yourself SOL in order to execute transactions
+11. Send yourself SOL in order to execute transactions
 
 ```
 solana transfer --allow-unfunded-recipient <your_phantom_public_key> 1000
 ```
 
-11. Run the web app frontend
+12. Run the web app frontend
 
 ```
 cd notes-frontend
@@ -84,7 +115,9 @@ npm install
 npm run dev
 ```
 
-12. connect your phantom wallet to localhost
+13. connect your phantom wallet to localhost
+
+Now if you go to localhost:3000, you should now be able to write and post notes and see the notes you've written!
 
 ## Testing
 
