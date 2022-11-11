@@ -57,6 +57,8 @@ pub struct Note {
     pub content: String,
 }
 
+// Discriminator is an 8 byte array that stores the account type - it is added at the beginning
+// of each new account
 const DISCRIMINATOR_LENGTH: usize = 8;
 const PUBLIC_KEY_LENGTH: usize = 32;
 const TIMESTAMP_LENGTH: usize = 8;

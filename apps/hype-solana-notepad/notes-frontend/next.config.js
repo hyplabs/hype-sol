@@ -1,4 +1,6 @@
-/** @type {import('next').NextConfig} */
+// Note - this is a custom webpack config because anchor exports types from a generated .ts
+// file and next.js can't load typescript files out of the box
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,

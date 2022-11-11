@@ -16,7 +16,6 @@ const useProgram = <T extends anchor.Idl>(
 ): Program<T> => {
   const anchorWallet = useAnchorWallet();
   const { connection } = useConnection();
-  console.log({ anchorWallet });
   return useMemo(() => {
     if (anchorWallet) {
       // same as an Eth Provider like Infura etc.
@@ -31,7 +30,6 @@ const useProgram = <T extends anchor.Idl>(
         programId,
         provider
       ) as anchor.Program<T>;
-      console.log("useMemo returning the program here!!!");
       return { program };
     }
     // without a wallet we can't get the Program from the

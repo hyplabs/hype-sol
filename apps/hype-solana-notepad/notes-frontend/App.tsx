@@ -13,8 +13,14 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 
 const App = () => {
-  const network = WalletAdapterNetwork.Devnet;
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  /************
+    Note - if we were using devnet or mainnet, we would use the following configuration:
+    
+    const network = WalletAdapterNetwork.Devnet;
+    const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  
+    And then <ConnectionProvider endpoint={endpoint} />
+  ***************/
   const wallets = useMemo(
     () => [new SolflareWalletAdapter(), new PhantomWalletAdapter()],
     []

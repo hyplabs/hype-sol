@@ -15,7 +15,6 @@ const useNotesProgram = () => {
     //Todo - there's probably a better way than hard coding
     new PublicKey("3nX4evzuDS1hg8Z3P2N8nw6jAA2yndosgPzCa8YNGB9T")
   );
-  console.log("use_note_program working fine!", { program });
   return program;
 };
 export { useNotesProgram };
