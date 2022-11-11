@@ -12,19 +12,33 @@ solana --version
 solana-test-validator --version
 ```
 
-2. Use solana locally
+2. If you haven't previously setup solana, you will need a local key pair
+
+- check if you already have a local key pair
+
+```
+solana address
+```
+
+- if you get an error, then you probably don't have a pair and need to generate a new one
+
+```
+solana-keygen new
+```
+
+3. Use solana locally
 
 ```
 solana config set --url localhost
 ```
 
-3. Install Anchor
+4. Install Anchor
 
 ```
 cargo install --git https://github.com/project-serum/anchor anchor-cli --locked
 ```
 
-4. install yarn
+5. install yarn
 
 ```
 brew install yarn
@@ -34,30 +48,43 @@ npm install -g yarn
 
 This should tell solana to use localhost:8899
 
-5. Build the contract
+6. Build the contract
 
    ```
    anchor build
    ```
 
-6. Start the local validator
+7. Start the local validator
 
 ```
 solana-test-validator
 ```
 
-7. Deploy the contract
+8. Deploy the contract
 
 ```
 anchor deploy
 ```
 
-8. Run the we bapp frontend
+9. Install phantom wallet in chrome
+
+https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa?hl=en
+
+10. Send yourself SOL in order to execute transactions
+
+```
+solana transfer --allow-unfunded-recipient <your_phantom_public_key> 1000
+```
+
+11. Run the web app frontend
 
 ```
 cd notes-frontend
-npm start
+npm install
+npm run dev
 ```
+
+12. connect your phantom wallet to localhost
 
 ## Testing
 
