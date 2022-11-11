@@ -73,7 +73,14 @@ const NotePad = () => {
           setWIPNote(e.target.value);
         }}
       />
-      <button onClick={() => writeNote(wipNote)}>Post note</button>
+      <button
+        onClick={() => {
+          writeNote(wipNote);
+          setWIPNote("");
+        }}
+      >
+        Post note
+      </button>
     </div>
   );
 };
