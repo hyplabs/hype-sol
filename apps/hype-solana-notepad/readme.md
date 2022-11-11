@@ -92,17 +92,23 @@ hype_solana_notepad = "<programId here>"
 declare_id!("<programId here>");
 ```
 
-10. Install phantom wallet in chrome
+10. Be sure to rebuild and redploy your contract with the following commands now that you've updated the program Id!
+```
+anchor build
+anchor deploy
+```
+
+11. Install phantom wallet in chrome
 
 https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa?hl=en
 
-11. Send yourself SOL in order to execute transactions
+12. Send yourself SOL in order to execute transactions
 
 ```
 solana transfer --allow-unfunded-recipient <your_phantom_public_key> 1000
 ```
 
-12. Run the web app frontend
+13. Run the web app frontend
 
 ```
 cd notes-frontend
@@ -110,7 +116,7 @@ npm install
 npm run dev
 ```
 
-13. connect your phantom wallet to localhost
+14. connect your phantom wallet to localhost
 
 Now if you go to localhost:3000, you should now be able to write and post notes and see the notes you've written!
 
