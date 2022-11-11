@@ -33,6 +33,7 @@ solana-keygen new
 solana config set --url localhost
 ```
 This should tell solana to use localhost:8899
+
 4. Install Anchor
 
 ```
