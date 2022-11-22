@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom {
+    background-color: #1d4ed8;
+    border-radius: .5rem;
+}
+
+.custom:not([disabled]):hover {
+    background-color: #1e40af;
+}
+
+.custom[disabled]  {
+    background: #60a5fa;
+    color: #ffffff;
+}
