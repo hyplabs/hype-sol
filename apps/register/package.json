@@ -1,0 +1,50 @@
+{
+    "name": "sign_in",
+    "version": "0.1.0",
+    "homepage": "./",
+    "private": true,
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.2.0",
+        "@fortawesome/free-solid-svg-icons": "^6.2.0",
+        "@fortawesome/react-fontawesome": "^0.2.0",
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "chai": "^4.3.7",
+        "env-cmd": "^10.1.0",
+        "mocha": "^10.1.0",
+        "node-fetch": "^3.2.10",
+        "react": "^18.2.0",
+        "react-bootstrap": "^2.6.0",
+        "react-cookie": "^4.1.1",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.4.3",
+        "react-scripts": "5.0.1",
+        "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+        "start": "env-cmd -f .env.local react-scripts start",
+        "build": "env-cmd -f .env.local react-scripts build",
+        "test": "npm run build; mocha",
+        "eject": "react-scripts eject",
+        "deploy-local": "env-cmd -f .env.local react-scripts start"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}
